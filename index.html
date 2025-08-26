@@ -28,7 +28,7 @@
       <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" fill="currentColor" viewBox="0 0 512 512"><path d="M446.17 97.44c-44.92-44.59-118.08-44.59-163 0l-27.17 27-27.17-27c-44.92-44.59-118.08-44.59-163 0a113.64 113.64 0 000 161.8C78.44 271.8 250 442 256 448c5.5-5.59 178.05-176.63 190.17-188.76a113.64 113.64 0 000-161.8zm-22.65 139.61L256 403.32 88.48 237.05a82.19 82.19 0 01-24.55-58.71c-.88-44.63 38.67-83.82 83.4-82.85 43.65-4.1 80.52 47.92 108.67 73.6 28.4-25.79 64.84-77.59 108.67-73.6 72.45-1.87 111.72 91.66 58.85 141.56z"/></svg>
         <div>
-          Возможны расхождения на +/- 1$. Буду рад любой помощи в правках. Discord: d1KdaT
+          Возможны расхождения на +/- 1$ за 1 единицу товара. Буду рад любой помощи в правках. Discord: d1KdaT
         </div>
       </div>
 
@@ -52,7 +52,7 @@
                   <input id="I7" type="number" step="1" min="0" max="60" class="form-control" placeholder="0" inputmode="numeric">
                 </div>
                 <div class="col-12">
-                  <label class="form-label">Налог % (5–50)</label>
+                  <label class="form-label">Налог % (0–50)</label>
                   <input id="I10" type="number" step="1" min="5" max="50" class="form-control" placeholder="14" inputmode="numeric">
                 </div>
                 <div class="col-12">
@@ -200,7 +200,7 @@
 
       function getValues() {
         const I7pct = clamp(document.getElementById("I7").value, 0, 60);
-        const I10pct = clamp(document.getElementById("I10").value, 5, 50);
+        const I10pct = clamp(document.getElementById("I10").value, 0, 50);
         document.getElementById("I7").value = I7pct;
         document.getElementById("I10").value = I10pct;
         return {
@@ -218,7 +218,7 @@
       function applyValuesToForm(values) {
         document.getElementById("I3").value = values.I3;
         document.getElementById("I7").value = clamp(Math.round(values.I7*100), 0, 60);
-        document.getElementById("I10").value = clamp(Math.round(values.I10*100), 5, 50);
+        document.getElementById("I10").value = clamp(Math.round(values.I10*100), 0, 50);
         document.getElementById("I13").value = values.I13;
         document.getElementById("I16").value = values.I16;
         document.getElementById("I19").value = values.I19;
