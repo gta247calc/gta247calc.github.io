@@ -13,6 +13,8 @@
       .info-block { border-left: 4px solid #0d6efd; background:#f8f9fa; }
       body.bg-light tr.group-divider td { border-bottom: 2px solid rgba(0,0,0,.5) !important; }
       tr.group-divider td { border-bottom: 2px solid rgba(255,255,255,.5) !important; }
+      .form-select.select-danger { background-color: var(--bs-danger-bg-subtle); border-color: var(--bs-danger-border-subtle); }
+      .form-select.select-success { background-color: var(--bs-success-bg-subtle); border-color: var(--bs-success-border-subtle); }
     </style>
   </head>
   <body class="bg-light">
@@ -179,6 +181,20 @@
       const fmtWeight = (w) => Number(w||0).toLocaleString("ru-RU", { minimumFractionDigits:0, maximumFractionDigits:2 });
 
       function computeJ19(I13, I16, I19) { return (I13*I19 + I16) / I19; }
+
+      function styleKSelects() {
+        const tax = document.getElementById("K7");
+        const writeoff = document.getElementById("K10");
+        if (tax) {
+          tax.classList.remove("select-danger","select-success");
+          if (tax.value === "Налог включен") tax.classList.add("select-danger"); else tax.classList.add("select-success");
+        }
+        if (writeoff) {
+          writeoff.classList.remove("select-danger","select-success");
+          if (writeoff.value === "Списание включено") writeoff.classList.add("select-danger"); else writeoff.classList.add("select-success");
+        }
+      }
+
       const toFracFromPercent = (v) => Number(v)/100;
       function clamp(val, min, max) { val=Math.round(Number(val)||0); if(val<min)val=min; if(val>max)val=max; return val; }
 
@@ -208,6 +224,7 @@
         document.getElementById("I19").value = values.I19;
         document.getElementById("K7").value = values.K7;
         document.getElementById("K10").value = values.K10;
+        styleKSelects();
       }
 
       function renderSections() {
@@ -282,6 +299,7 @@
           const handler = () => {
             const cur = getValues();
             if (id !== "I3") saveLS(cur);
+            styleKSelects();
             recalc();
           };
           el.addEventListener("input", handler);
@@ -292,11 +310,13 @@
         document.getElementById("resetBtn").addEventListener("click", () => {
           applyValuesToForm(DEFAULTS);
           saveLS(DEFAULTS);
+          styleKSelects();
           recalc();
         });
         document.getElementById("clearBtn").addEventListener("click", () => {
           clearLS();
           applyValuesToForm(DEFAULTS);
+          styleKSelects();
           recalc();
         });
       }
