@@ -81,8 +81,7 @@
                     <option>Списание выключено</option>
                   </select>
                 </div>
-                <div class="col-12"><button id="resetBtn" class="btn btn-outline-secondary w-100">Сбросить</button></div>
-                <div class="col-12"><button id="clearBtn" class="btn btn-outline-danger w-100">Очистить хранилище</button></div>
+                <div class="col-12"><button id="resetBtn" class="btn btn-outline-danger w-100">Сбросить</button></div>
               </div>
             </div>
           </div>
@@ -308,12 +307,6 @@
         });
 
         document.getElementById("resetBtn").addEventListener("click", () => {
-          applyValuesToForm(DEFAULTS);
-          saveLS(DEFAULTS);
-          styleKSelects();
-          recalc();
-        });
-        document.getElementById("clearBtn").addEventListener("click", () => {
           clearLS();
           applyValuesToForm(DEFAULTS);
           styleKSelects();
